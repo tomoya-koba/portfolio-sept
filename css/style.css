@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,500;0,700;1,400&display=swap');
+
+/* CSS Reset */
+* 
+{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Oswald', sans-serif;
+}
+
+p, span, a, label, input
+{
+    font-family: 'Raleway', sans-serif;
+}
+
+/* End of Reset */
+
+/* Start of Ads */
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #f5f5f5;;
+}
+
+li{
+    list-style-type: none;
+}
+
+.ads
+{
+    width: 85%;
+    margin: 4em auto;
+    overflow: auto;
+}
+
+.ads-items
+{
+    width: 48.5%;
+    float: left;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 3%;
+    position: relative;
+}
+
+.ads-item1
+{
+    background-image: url('../img/r1.jpeg');
+    margin-right: 3%;
+    background-color:rgba(255,255,255,0.8);
+    background-blend-mode:lighten;
+}
+
+.ads-item2
+{
+    background-image: url('../img/item.jpeg');
+    background-color:rgba(255,255,255,0.8);
+    background-blend-mode:lighten;
+}
+
+.ads-text
+{
+    width: 55%;
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.ads-text h3
+{
+    color: black;
+    text-transform: uppercase;
+    font-size: 2em;
+    line-height: 1.4em;
+    text-shadow: 3px 3px 6px #2e2631;
+    
+}
+
+.ads-text a
+{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px #2e2631;
+    display: inline-block;
+    margin-top: 1em;
+}
+/* End of Ads */
+
+
+
+.navbar-brand {
+    font-size: 3em;
+    margin-left: 1em;
+}
+
+.nav-item {
+    font-size: 2em;
+    color: green;
+    padding-right: 1.4em;
+}
+
+
+/* MODAL */
+
+.modal-width {
+    align-items: center;
+    width: 100%;
+    margin: auto;
+  }
