@@ -21,6 +21,7 @@
   <body>
     <?php $user_id = $_SESSION['user_id'] ?> 
     <?php $item_id = $_GET['item_id'] ?>
+    <h2 class="text-center mt-5 text-danger">You can book within 7Days</h2>
 
     <div class="container mx-auto mt-5">
         <div class="row mx-auto">

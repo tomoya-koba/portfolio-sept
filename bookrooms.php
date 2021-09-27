@@ -35,7 +35,6 @@
         $d6 = strtotime("+6 days");
             $day6 = date("y-m-d",$d6);
             $daymd6 = date("m/d",$d6);
-        // $date = $userobj->room_vacant(date("y-m-d"));
     ?>
 </head>
 <body>
@@ -52,15 +51,14 @@
                         <th>No.</th>
                         <th>Room Name</th>
                         <th>Images</th>
-                        <th></th>
                         <!-- <th class="room_image">Image</th> -->
-                        <th><?php echo date("m/d") ?></th>
-                        <th><?php echo date('m/d',$d1) ?></th> 
-                        <th><?php echo date('m/d',$d2) ?></th>
-                        <th><?php echo date('m/d',$d3) ?></th>
-                        <th><?php echo date('m/d',$d4) ?></th>
-                        <th><?php echo date('m/d',$d5) ?></th>
-                        <th><?php echo date('m/d',$d6) ?></th>
+                        <th><?php echo $daymd0 ?></th>
+                        <th><?php echo $daymd1 ?></th> 
+                        <th><?php echo $daymd2 ?></th>
+                        <th><?php echo $daymd3 ?></th>
+                        <th><?php echo $daymd4 ?></th>
+                        <th><?php echo $daymd5 ?></th>
+                        <th><?php echo $daymd6 ?></th>
                         <th class="text-start">Description</th>
                     </thead>
                     <tbody>
@@ -69,30 +67,24 @@
                             <tr>
                                 <td><?php echo $row['room_id'] ?></td>
                                 <td><?php echo $row['room_name'] ?></td>
-                                <?php $img = $row['room_img'] ?>
-                                <td><?php echo $img ?></td>
                                 
                                 <!-- MODAL -->
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                     VIEW Image
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalid_<?php echo $row['room_id']?>">
+                                     VIEW
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modalid_<?php echo $row['room_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" style="width:100%">
                                     <div class="modal-content">
                                     <div class="modal-header">
+                                    <h1 class="text-center"><?php echo $row['room_name']?></h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                       <!-- <img src="img/<?php echo $img ?>" alt=""> -->
-                                       <?php echo $row['room_img'] ?>
-                                       <br>
-                                       <?php echo $img?>
-                                       <br>
-                                       <?php echo $row['room_id'] ?>
+                                       <img src="img/<?php echo $row['room_img'] ?>" alt="" class="img-responsive" style="max-width:100%">
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

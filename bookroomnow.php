@@ -20,22 +20,35 @@
     <?php $user_id = $_SESSION['user_id'] ?> 
     <?php $room_id = $_GET['room_id'] ?>
     <?php $reserved_date = $_GET['reserved_date'] ?>
-
+    <?php $roomname = $room_id ?>
+    <?php $room_name = $userobj->get_roomname($_GET['room_id']) ?>
 </head>
   <body>
   <h2 class="text-center mt-5 mb-5">Check your reservation</h2>
     <div class="container mx-auto">
         <div class="row mx-auto">
             <form action="" method="post" class="text-center">
-                <div class="col-md-12 mx-auto" style="width:40%">room_id:<input type="" name="room_id" value="<?php echo $room_id ?>" class="form-control form-control-lg text-center" readonly></div>
-                <div class="col-md-12 mx-auto" style="width:40%">user_id:<input type="" name="user_id" value="<?php echo $user_id ?>" class="form-control form-control-lg text-center" readonly></div>
+              <div class="col-md-12 mx-auto" style="width:40%" hidden><input type="" name="room_id" value="<?php echo $room_id ?>" class="form-control form-control-lg text-center" ></div>
+                <div class="col-md-12 mx-auto" style="width:40%"><input type="" name="user_id" value="<?php echo $user_id ?>" class="form-control form-control-lg text-center" readonly hidden></div>
                 <div class="col-md-12 mx-auto" style="width:40%">Reserve Date:<input type="" name="reserved_date" value="<?php echo $reserved_date ?>" class="form-control form-control-lg text-center" readonly></div>
-                <p>Display Room name Here (Later...)</p>
+                <br>
+                <p>Display Room name Later (Someday...)</p>
+                <div class="col-md-12 mx-auto" style="width:40%">room_name:<input type="" name="room_name" value="<?php echo $row['room_name'] ?>" class="form-control form-control-lg text-center" readonly></div>
                 <button type="submit" name="reserve_room" class="btn btn-outline-primary mt-5 mb-5" style="width:40%">Reserve Now!</button>
             </form>
         </div>
     </div>
-
+    <br>
+    <?php echo $roomname ?>
+    <br>
+<?php $room_name?>
+<br>
+<?php echo $roomname ?>
+<br>
+<?php $userobj->get_roomname($room_id) ?>
+<br>
+<?php echo $roomname ?>
+<br>
           
       </div>
 

@@ -25,8 +25,12 @@
             if($result->num_rows == 1){
 
                 $row = $result->fetch_assoc();
+                if($row['status'] == NULL){
                 $_SESSION['user_id'] = $row['user_id'];
                 header('location:dashboard.php');
+                }else{
+                    header('location:admintop.php');
+                }
 
             }else{
                 // header('location:welcome.php');
@@ -46,16 +50,25 @@
             }
         }
 
-        function rentalReserve($user_id,$item_id,$rental_start,$rental_end){
-            $sql = "INSERT INTO Rentaled_item(user_id,item_id,rental_start,rental_end) VALUES ('$user_id','$item_id','$rental_start','$rental_end')";
-            $result = $this->conn->query($sql);
-
-           if($result == TRUE){
-               header('location:thanks.php');
-           }else{
-            die("ERROR: ".$this->conn->error);
-           }
-        }
+        // function rentalReserve($user_id,$item_id,$rental_start,$rental_end){
+        //     $rentaldays = DATE($rental_end) - DATE($rental_start);
+        //     echo $rentaldays;
+        //     die();
+        
+        //     if($rentaldays<'8'){
+        //         $sql = "INSERT INTO Rentaled_item(user_id,item_id,rental_start,rental_end) VALUES ('$user_id','$item_id','$rental_start','$rental_end')";
+        //         $result = $this->conn->query($sql);
+    
+        //        if($result == TRUE){
+        //            header('location:thanks.php');
+        //        }else{
+        //         die("ERROR: ".$this->conn->error);
+        //        }
+                
+        //     }else{
+        //         echo "<h2 class='alert alert-danger text-center'>It's too long!!!</h2>";         
+        //     }
+        // }
 
 
         function get_room(){
@@ -73,6 +86,24 @@
                 return FALSE;
             }
         }
+
+
+        function get_roomname($room_id){
+            $sql = "SELECT room_name FROM Rooms WHERE room_id='$room_id'";
+            $result = $this->conn->query($sql);
+            
+            if($result->num_rows>0){
+                $row = array($room_id);
+                while($rows = $result->fetch_assoc()){
+                    $row[] = $rows;
+                }
+                return $row;
+    
+            }else{
+                return FALSE;
+            }
+        }
+
 
 
         //get vacantroom //
@@ -302,30 +333,39 @@
         }
 
         function reserved_item($user_id,$item_id,$rental_start,$rental_end){
-            $sql = "SELECT * FROM Rentaled_item 
-                    WHERE item_id='$item_id' 
-                    AND(('$rental_start' BETWEEN rental_start AND rental_end)
-                    OR ('$rental_end' BETWEEN rental_start AND rental_end)
-                    OR ('$rental_start' < rental_start AND '$rental_end' > rental_end))";
-            $result = $this->conn->query($sql);
+            $endday = strtotime($rental_end);
+            $startday = strtotime($rental_start);
+            $date = ($endday - $startday)/(60*60*24);
 
-            if($result->num_rows > 0){
-                echo "Sorry, That Day was full...";
+            if($date < 8){
+                $sql = "SELECT * FROM Rentaled_item 
+                        WHERE item_id='$item_id' 
+                        AND(('$rental_start' BETWEEN rental_start AND rental_end)
+                        OR ('$rental_end' BETWEEN rental_start AND rental_end)
+                        OR ('$rental_start' < rental_start AND '$rental_end' > rental_end))";
+                $result = $this->conn->query($sql);
 
+                if($result->num_rows > 0){
+                    echo "Sorry, That Day was full...";
+
+                }else{
+                    $sql1 = "INSERT INTO Rentaled_item(user_id,item_id,rental_start,rental_end) 
+                            VALUES ('$user_id','$item_id','$rental_start','$rental_end')";
+                    $result1 = $this->conn->query($sql1);
+
+                    if($result1 == TRUE){
+                        header('location:thanks.php?user_id='.$user_id.'');
+                    
+                }else{
+                    die("ERROR: ".$this->conn->error);
+                }
+                }
             }else{
-                $sql1 = "INSERT INTO Rentaled_item(user_id,item_id,rental_start,rental_end) 
-                        VALUES ('$user_id','$item_id','$rental_start','$rental_end')";
-                $result1 = $this->conn->query($sql1);
-
-                if($result1 == TRUE){
-                    header('location:thanks.php?user_id='.$user_id.'');
-                   
-               }else{
-                die("ERROR: ".$this->conn->error);
-               }
+                echo "<h2 class='alert alert-danger text-center'>It's too long!!!</h2>";
             }
         }
 
+        
 
         // Start of Room-Reservation system
         function day0($day0,$room_id){
@@ -412,6 +452,19 @@
             }
         }
         //End of Room-Reservation System//
+
+
+        // function cancel($reserved_date){
+
+        //     $sql = "SELECT * FROM Reserved_room WHERE '$reserved_date' < date()";
+        //     $result = $this->conn->query($sql);
+        //     if($result->num_rows > 0){
+        //         return "-";
+                
+        //     }else{
+        //         return "<button class='btn btn-primary rounded-pill' name='day0'>book</button>";
+        //     }
+        // }
 
 
     }
