@@ -50,26 +50,6 @@
             }
         }
 
-        // function rentalReserve($user_id,$item_id,$rental_start,$rental_end){
-        //     $rentaldays = DATE($rental_end) - DATE($rental_start);
-        //     echo $rentaldays;
-        //     die();
-        
-        //     if($rentaldays<'8'){
-        //         $sql = "INSERT INTO Rentaled_item(user_id,item_id,rental_start,rental_end) VALUES ('$user_id','$item_id','$rental_start','$rental_end')";
-        //         $result = $this->conn->query($sql);
-    
-        //        if($result == TRUE){
-        //            header('location:thanks.php');
-        //        }else{
-        //         die("ERROR: ".$this->conn->error);
-        //        }
-                
-        //     }else{
-        //         echo "<h2 class='alert alert-danger text-center'>It's too long!!!</h2>";         
-        //     }
-        // }
-
 
         function get_room(){
             $sql = "SELECT * From Rooms";
@@ -465,6 +445,49 @@
         //         return "<button class='btn btn-primary rounded-pill' name='day0'>book</button>";
         //     }
         // }
+
+
+        // Admin //
+        function admindeleteroom($room_id){
+            $sql = "DELETE FROM Rooms WHERE room_id = '$room_id'";
+            $result = $this->conn->query($sql);
+            if($result == TRUE){
+                header('location:adminroom.php');
+            }else{
+                die("ERROR: ".$this->conn->error);
+            }
+        }
+
+        function admindeleteitem($item_id){
+            $sql = "DELETE FROM Items WHERE item_id = '$item_id'";
+            $result = $this->conn->query($sql);
+            if($result == TRUE){
+                header('location:adminitem.php');
+            }else{
+                die("ERROR: ".$this->conn->error);
+            }
+        }
+
+        function adminUpdateRoom($room_id,$room_name,$room_img,$room_desc){
+            $sql = "UPDATE Rooms SET room_name='$room_name',room_img='$room_img',room_desc='$room_desc' WHERE room_id='$room_id'";
+            $result = $this->conn->query($sql);
+            if($result == TRUE){
+                header('location:admintop.php');
+            }else{
+                die("ERROR: ".$this->conn->error);
+            }
+        }
+
+        function adminUpdateItem($item_id,$item_name,$item_img,$item_desc){
+            $sql = "UPDATE Items SET item_name='$item_name',item_img='$item_img',item_desc='$item_desc' WHERE item_id='$item_id'";
+            $result = $this->conn->query($sql);
+            if($result == TRUE){
+                header('location:admintop.php');
+            }else{
+                die("ERROR: ".$this->conn->error);
+            }
+        }
+
 
 
     }

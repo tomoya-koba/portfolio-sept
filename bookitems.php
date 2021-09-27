@@ -30,7 +30,7 @@
                         <?php echo $row['item_name'] ?>
                     </h2>
                     <h3 class="card-body">
-                        <img src="img/<php echo $row['item_img'].jpg" alt=""> 
+                        <img src="img/<?php echo $row['item_img']?>" alt="" class="card-img card-img-top"> 
                     </h3>
                     <p>
                         <?php echo $row['item_desc'] ?>

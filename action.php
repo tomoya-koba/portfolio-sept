@@ -105,8 +105,26 @@
 
             $userobj->day6($day6,$room_id);
 
+            //End of Room-Reservation System//
+
+            //Start of Admin Function //
+        }elseif(isset($_POST['adminupdateroom'])){
+            $room_id = $_GET['room_id'];
+            $room_name = $_POST['room_name'];
+            $room_img = $_POST['room_img'];
+            $room_desc = $_POST['room_desc'];
+
+            $userobj->adminUpdateRoom($room_id,$room_name,$room_img,$room_desc);
+
+        }elseif(isset($_POST['adminupdateitem'])){
+            $item_id = $_GET['item_id'];
+            $item_name = $_POST['item_name'];
+            $item_img = $_POST['item_img$item_img'];
+            $item_desc = $_POST['item_desc'];
+
+            $userobj->adminUpdateItem($item_id,$item_name,$item_img,$item_desc);
+
         }
-        //End of Room-Reservation System//
 
     ?>
 
