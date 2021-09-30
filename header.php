@@ -3,7 +3,7 @@
 
 <header>
 <nav class="navbar navbar-expand-md navbar-light bg-white" style="height:120px">
-    <a href="welcome.php" class="navbar-brand">Book System</a>
+    <a href="index.php" class="navbar-brand">Book System</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collasoe" data-target="#menu-content">
         <span class="navbar-toggler-icon"></span>
