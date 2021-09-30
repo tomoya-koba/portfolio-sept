@@ -10,7 +10,7 @@
             $result = $this->conn->query($sql);
 
             if($result == TRUE){
-                header('location:welcome.php');
+                echo "<div class = 'alert alert-success text-center myAlert'>THANK YOU!</div>";
             }else{
                 echo "<div class='alert alert-danger>Error: register your account</div>";
             }
@@ -28,16 +28,18 @@
                 if($row['status'] == NULL){
                 $_SESSION['user_id'] = $row['user_id'];
                 header('location:dashboard.php');
+
                 }else{
                     header('location:admintop.php');
                 }
 
             }else{
-                // header('location:welcome.php');
-                echo "<div class='alert alert-danger'>You wrong E-mail or PW</div>";
+                echo "<div class='alert alert-danger text-center myAlert'>Wrong E-mail or PW</div>";
             }
         }
         
+
+        // Start of READ AND GET the DATABASE //
         function itemlist(){
              $sql = "SELECT * FROM Items";
             $result= $this->conn->query($sql);
@@ -50,9 +52,53 @@
             }
         }
 
+        function get_itemlist($item_id){
+            $sql = "SELECT * FROM Items WHERE item_id='$item_id'";
+           $result= $this->conn->query($sql);
+           if($result->num_rows>0){
+               $rows = array();
+               while($row = $result->fetch_assoc()){
+                   $rows[] = $row;
+               }
+               return $rows;
+           }
+       }
+
 
         function get_room(){
             $sql = "SELECT * From Rooms";
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows>0){
+                $row = array();
+                while($rows = $result->fetch_assoc()){
+                    $row[] = $rows;
+                }
+                return $row;
+    
+            }else{
+                return FALSE;
+            }
+        }
+
+        function get_1room($room_id){
+            $sql = "SELECT * From Rooms WHERE room_id='$room_id'";
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows>0){
+                $row = array();
+                while($rows = $result->fetch_assoc()){
+                    $row[] = $rows;
+                }
+                return $row;
+    
+            }else{
+                return FALSE;
+            }
+        }
+
+        function get_user(){
+            $sql = "SELECT * From Users";
             $result = $this->conn->query($sql);
 
             if($result->num_rows>0){
@@ -83,90 +129,6 @@
                 return FALSE;
             }
         }
-
-
-
-        //get vacantroom //
-        function get_vacantroom0($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day0'>book</button>";
-            }
-        }
-
-        function get_vacantroom1($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day1'>book</button>";
-            }
-        }
-        function get_vacantroom2($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day2'>book</button>";
-            }
-        }
-        function get_vacantroom3($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day3'>book</button>";
-            }
-        }
-        function get_vacantroom4($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day4'>book</button>";
-            }
-        }
-        function get_vacantroom5($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day5'>book</button>";
-            }
-        }
-        function get_vacantroom6($room_id,$reserved_date){
-
-            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
-            $result = $this->conn->query($sql);
-            if($result->num_rows > 0){
-                return "-";
-                
-            }else{
-                return "<button class='btn btn-primary rounded-pill' name='day6'>book</button>";
-            }
-        }
-        // END of vacantroom //
-
 
         function readroom($user_id){
             $today = DATE('y-m-d');
@@ -276,14 +238,29 @@
             }
         }
 
+        // End of READ AND GET //
 
 
+        // Start of DELETE //
 
         function deleteroom($user_id,$rentalroom_id){
             $sql = "DELETE FROM Reserved_room WHERE user_id = '$user_id' AND rentalroom_id = '$rentalroom_id'";
             $result = $this->conn->query($sql);
             if($result == TRUE){
                 header('location:thanks.php?user_id='.$user_id.'');
+            }else{
+                die("ERROR: ".$this->conn->error);
+            }
+        }
+
+
+
+        function deleteuser($user_id){
+            $sql = "DELETE FROM Users WHERE user_id = '$user_id'";
+            $result = $this->conn->query($sql);
+            if($result == TRUE){
+                header('location:admintop.php');
+                echo "<div class = 'alert alert-success text-center deleteAlert'>DELETE</div>";
             }else{
                 die("ERROR: ".$this->conn->error);
             }
@@ -300,6 +277,92 @@
             }
         }
 
+        // End of DELETE //
+
+
+        //get vacantroom //
+        function get_vacantroom0($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day0'>book</button>";
+            }
+        }
+
+        function get_vacantroom1($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day1'>book</button>";
+            }
+        }
+        function get_vacantroom2($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day2'>book</button>";
+            }
+        }
+        function get_vacantroom3($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day3'>book</button>";
+            }
+        }
+        function get_vacantroom4($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day4'>book</button>";
+            }
+        }
+        function get_vacantroom5($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day5'>book</button>";
+            }
+        }
+        function get_vacantroom6($room_id,$reserved_date){
+
+            $sql = "SELECT * FROM Reserved_room WHERE room_id='$room_id' AND reserved_date='$reserved_date'";
+            $result = $this->conn->query($sql);
+            if($result->num_rows > 0){
+                return "-";
+                
+            }else{
+                return "<button class='btn btn-primary rounded-pill' name='day6'>book</button>";
+            }
+        }
+        // END of vacantroom //
+
+
+        // Start of RESERVATION // 
         function reserved_room($user_id,$room_id,$reserved_date){
             $sql = "INSERT INTO Reserved_room(user_id,room_id,reserved_date) VALUES ('$user_id','$room_id','$reserved_date')";
             $result = $this->conn->query($sql);
@@ -341,13 +404,12 @@
                 }
                 }
             }else{
-                echo "<h2 class='alert alert-danger text-center'>It's too long!!!</h2>";
+                echo "<h2 class='alert alert-danger text-center itemAlert'>You choose ".$date." Days!<br>Please book within 7 Days.</h2>";
+                
             }
         }
 
         
-
-        // Start of Room-Reservation system
         function day0($day0,$room_id){
             $sql = "SELECT * FROM Reserved_room WHERE reserved_date='$day0' AND room_id='$room_id'";
             $result = $this->conn->query($sql);
@@ -431,23 +493,10 @@
             
             }
         }
-        //End of Room-Reservation System//
 
+        // End of RESERVATION // 
 
-        // function cancel($reserved_date){
-
-        //     $sql = "SELECT * FROM Reserved_room WHERE '$reserved_date' < date()";
-        //     $result = $this->conn->query($sql);
-        //     if($result->num_rows > 0){
-        //         return "-";
-                
-        //     }else{
-        //         return "<button class='btn btn-primary rounded-pill' name='day0'>book</button>";
-        //     }
-        // }
-
-
-        // Admin //
+        // Start of Admin //
         function admindeleteroom($room_id){
             $sql = "DELETE FROM Rooms WHERE room_id = '$room_id'";
             $result = $this->conn->query($sql);

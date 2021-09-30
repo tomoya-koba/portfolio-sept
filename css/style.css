@@ -34,6 +34,19 @@ body {
     background-color: #f5f5f5;;
 }
 
+.contents {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+    bottom: -1;
+    z-index: 9999;
+}
+
+
 li{
     list-style-type: none;
 }
@@ -124,6 +137,10 @@ li{
     margin: auto;
   }
 
+.fade {
+    width:100%;
+}
+
 
 /* table */
 
@@ -140,5 +157,37 @@ li{
 
 /* CARD */
 .card-img{
-    height: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+/* ALERT */
+.myAlert{
+    position: absolute;
+    top: 150px;
+    left:2%;
+    width: 96%;
+    z-index: 9999;
+}
+
+.itemAlert{
+    position: absolute;
+    top: 150px;
+    left:2%;
+    width: 96%;
+    z-index: 9999;
+}
+
+.deleteAlert{
+    position: absolute;
+    top: 150px;
+    left:2%;
+    width: 96%;
+    z-index: 9999;
+}
+
+.home{
+    background-image: url('../img/bgimage.jpg');
+    background-size: 100%;
 }

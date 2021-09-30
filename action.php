@@ -5,10 +5,17 @@
         if(isset($_POST['register'])){
             $fname = $_POST['fname'];
             $lname = $_POST['lname'];
-            $pw = md5($_POST['pw']);
+            $pw = $_POST['pw'];
+            $pw2 = $_POST['pw2'];
             $email = $_POST['email'];
     
-            $userobj->register($fname,$lname,$pw,$email);
+            if($pw === $pw2){
+                $pw = md5($_POST['pw']);
+                $userobj->register($fname,$lname,$pw,$email);
+            }else{
+                echo "<div class = 'alert alert-danger text-center myAlert'>Wrong password</div>";
+            }
+
 
         }elseif(isset($_POST['login'])){
             $pw = md5($_POST['pw']);
@@ -29,7 +36,7 @@
             // echo $date2;
 
             if($date1>$date2){
-                echo "<div class='alert alert-danger'>[End] is earlier than [start]</div>";
+                echo "<h2 class='alert alert-danger text-center itemAlert'>Error:You choose wrong date (End Date is earlier than Start Date)</h2>";
 
             }else{
                 $userobj->reserved_item($user_id,$item_id,$rental_start,$rental_end);
@@ -44,18 +51,6 @@
 
             
             
-        // }elseif(isset($_POST['check_vacant'])){
-        //     $rental_start = $_POST['rental_start'];
-        //     $rental_end = $_POST['rental_end'];
-
-        //     $date1 = date($rental_start);
-        //     $date2 = date($rental_end);
-
-        //     $userobj->check_vacant2($rental_start,$rental_end);
-
-
-
-        //Start of Room-Reservation System//
         }elseif(isset($_POST['day0'])){
             $user_id = $_POST['user_id'];
             $room_id = $_POST['room_id'];

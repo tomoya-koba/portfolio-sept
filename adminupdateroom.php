@@ -16,8 +16,28 @@
     <?php include 'adminheader.php' ?>
 </head>
 <body>
+<?php $room_id = $_GET['room_id'] ?>
+<h2 class="text-center">Old Setting</h2>
+<div class="text-center mx-auto">
+<?php foreach($userobj->get_1room($room_id) as $row): ?>
+    <div class="col-md-2 mx-auto text-center">
+        <div class="card mt-4 mx-auto text-center">
+            <h2 class="card-header bg-light text-dark">
+            Item Name:<?php echo $row['room_name'] ?>
+            </h2>
+            <h3 class="card-body">
+            <img src="img/<?php echo $row['room_img']?>" alt="" class="card-img card-img-top"> 
+            </h3>
+            <p>
+            DESC:<?php echo $row['room_desc'] ?>
+            </p>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+<h2 class="text-center mt-5">New Setting</h2>
     <?php $room_id = $_GET['room_id'] ?>
-<div class="container">
+<div class="container mb-5">
 <form action="" method="post">
     <div class="form-floating mb-3 mt-5">
         <input type="text" class="form-control" id="room_id" name="room_id" value="<?php $room_id ?>" hidden>

@@ -25,6 +25,27 @@
       <button class="btn"><a href="adminitem.php">Item Manager</a></button>
     </div>
   </div>
+  <table class="table mt-5 text-center">
+    <thead class="thead-dark">
+      <th>User_id</th>
+      <th>First Name</th>
+      <th>Family Name</th>
+      <th>E-mail</th>
+      <th>Option</th>
+    </thead>
+    <tbody>
+      <?php foreach($userobj->get_user() as $row): ?>
+        <tr>
+        <td><?php echo $row['user_id'] ?></td>
+        <td><?php echo $row['fname'] ?></td>
+        <td><?php echo $row['lname'] ?></td>
+        <td><?php echo $row['email'] ?></td>
+        <td><a href="deleteuser.php?user_id=<?php echo $row['user_id']?>" class="btn btn-outline-dark">DELETE</a></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+
+  </table>
 </div>
 
 

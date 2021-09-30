@@ -1,4 +1,4 @@
-    <div class="container-fluid mt-5 bg-dark" style="width:100%">
+    <div class="container-fluid mt-5 bg-dark" style="width:100% ;height:300px">
         <ul class="footer-nav font-weight-bolder d-flex justify-content-center text-center">
             <li class="mr-3 ml-3 mt-4">
                 <a href="#" class="nav-link text-white text-uppercase" 　target="_blank">

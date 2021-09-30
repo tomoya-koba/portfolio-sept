@@ -74,10 +74,6 @@
 </tbody>
 </table>
 
-
-
-
-
   <footer>
     <?php include 'footer.php' ?>
   </footer>
