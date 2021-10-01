@@ -10,7 +10,7 @@
             $result = $this->conn->query($sql);
 
             if($result == TRUE){
-                echo "<div class = 'alert alert-success text-center myAlert'>THANK YOU!</div>";
+                echo "<div class = 'alert alert-success text-center myAlert'>Thank your for your sign up!</div>";
             }else{
                 echo "<div class='alert alert-danger>Error: register your account</div>";
             }
@@ -247,7 +247,7 @@
             $sql = "DELETE FROM Reserved_room WHERE user_id = '$user_id' AND rentalroom_id = '$rentalroom_id'";
             $result = $this->conn->query($sql);
             if($result == TRUE){
-                header('location:thanks.php?user_id='.$user_id.'');
+                header('location:mypage.php');
             }else{
                 die("ERROR: ".$this->conn->error);
             }
@@ -271,7 +271,7 @@
             $sql = "DELETE FROM Rentaled_item WHERE user_id = '$user_id' AND rentalitem_id = '$rentalitem_id'";
             $result = $this->conn->query($sql);
             if($result == TRUE){
-                header('location:thanks.php?user_id='.$user_id.'');
+                header('location:mypage.php');
             }else{
                 die("ERROR: ".$this->conn->error);
             }
@@ -521,7 +521,7 @@
             $sql = "UPDATE Rooms SET room_name='$room_name',room_img='$room_img',room_desc='$room_desc' WHERE room_id='$room_id'";
             $result = $this->conn->query($sql);
             if($result == TRUE){
-                header('location:admintop.php');
+                header('location:adminroom.php');
             }else{
                 die("ERROR: ".$this->conn->error);
             }
@@ -531,7 +531,7 @@
             $sql = "UPDATE Items SET item_name='$item_name',item_img='$item_img',item_desc='$item_desc' WHERE item_id='$item_id'";
             $result = $this->conn->query($sql);
             if($result == TRUE){
-                header('location:admintop.php');
+                header('location:adminroom.php');
             }else{
                 die("ERROR: ".$this->conn->error);
             }

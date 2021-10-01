@@ -19,7 +19,7 @@
                 <a href="adminitem.php" class="nav-link"><i class="fas fa-toolbox"></i>Items</a>
             </li>
             <li class="nav-item">
-                <a href="welcome.php" class="nav-link">Login</a>
+                <a href="index.php" class="nav-link">Login</a>
             </li>
         </ul>
     </div>

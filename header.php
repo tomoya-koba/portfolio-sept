@@ -3,7 +3,7 @@
 
 <header>
 <nav class="navbar navbar-expand-md navbar-light bg-white" style="height:120px">
-    <a href="index.php" class="navbar-brand">Book System</a>
+    <h2><a href="index.php" class="navbar-brand">Tomoya_mazon</a></h2>
 
     <button class="navbar-toggler" type="button" data-toggle="collasoe" data-target="#menu-content">
         <span class="navbar-toggler-icon"></span>
@@ -12,13 +12,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="menu-content">
         <ul class="nav navbar-nav text-center">
             <li class="nav-item">
-                <a href="bookrooms.php" class="nav-link"><i class="fas fa-building"></i>Rooms</a>
+                <a href="bookrooms.php" class="nav-link"><i class="fas fa-building text-primary"></i>Rooms</a>
             </li>
             <li class="nav-item">
-                <a href="bookitems.php" class="nav-link"><i class="fas fa-toolbox"></i>Items</a>
+                <a href="bookitems.php" class="nav-link"><i class="fas fa-toolbox text-primary"></i>Items</a>
             </li>
             <li class="nav-item">
-                <a href="mypage.php" class="nav-link"><i class="fas fa-user-circle fa-lg"></i>MyPage</a>
+                <a href="mypage.php" class="nav-link"><i class="fas fa-user-circle fa-lg text-primary"></i>MyPage</a>
             </li>
         </ul>
     </div>

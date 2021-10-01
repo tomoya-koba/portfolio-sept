@@ -19,7 +19,6 @@
     <?php include 'header.php' ?>
     <?php $user_id = $_SESSION['user_id'] ?> 
     <?php $item_id = $_GET['item_id'] ?>
-    <?php $item_id = $_GET['item_id'] ?>
   </head>
   <body>
 <!-- Start of Display -->
@@ -28,7 +27,7 @@
 <?php foreach($userobj->get_itemlist($item_id) as $row): ?>
     <div class="col-md-2 mx-auto text-center">
         <div class="card mt-4 mx-auto text-center">
-            <h2 class="card-header bg-light text-dark">
+            <h2 class="card-header bg-white text-dark">
             <?php echo $row['item_name'] ?>
             </h2>
             <h3 class="card-body">
@@ -56,13 +55,10 @@
                 <div class="col-md-12 mx-auto" style="width:40%">
                   <input type="date" name="rental_end" class="form-control form-control-lg text-center">
                 </div>
-                <!-- <p>For Debug:</p>
-                item_id:
-                <input type="" name="item_id" value="<?php echo $item_id ?>" style="width:30%" class="text-center">
+                <input type="" name="item_id" value="<?php echo $item_id ?>" style="width:30%" class="text-center" hidden>
                 <br>
-                user_id:
-                <input type="" name="user_id" value="<?php echo $user_id ?>" style="width:30%"class="text-center">
-                <br> -->
+                <input type="" name="user_id" value="<?php echo $user_id ?>" style="width:30%"class="text-center" hidden>
+                <br>
                 <button type="submit" name="reserve_item" class="btn btn-outline-primary mt-5 mb-5" style="width:40%">
                   Reserve Now!
                 </button>

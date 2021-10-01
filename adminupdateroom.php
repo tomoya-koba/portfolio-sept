@@ -48,7 +48,7 @@
         <label for="room_name">Room name</label>
     </div>
     <div class="form-floating mb-3 mt-5">
-        <input type="file" class="form-control" id="room_img" name="room_img"  required>
+        <input type="file" class="form-control" id="room_img" name="room_img"  >
         <label for="room_img">Room IMG</label>
     </div>
     <div class="form-floating mb-3 mt-5">
