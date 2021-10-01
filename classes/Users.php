@@ -389,7 +389,7 @@
                 $result = $this->conn->query($sql);
 
                 if($result->num_rows > 0){
-                    echo "Sorry, That Day was full...";
+                    echo "<h2 class='alert alert-danger text-center itemAlert'>Sorry that day was full...</h2>";
 
                 }else{
                     $sql1 = "INSERT INTO Rentaled_item(user_id,item_id,rental_start,rental_end) 
